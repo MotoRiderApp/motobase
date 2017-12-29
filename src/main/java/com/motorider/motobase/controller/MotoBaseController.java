@@ -20,11 +20,6 @@ public class MotoBaseController {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    @RequestMapping(value = TEST, method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String test() {
-        return "Hola MotoRiderApp";
-    }
-
     @RequestMapping(value = FIND_ALL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MotoBase> findAll() {
         List<MotoBase> customList = mongoTemplate.findAll(MotoBase.class);
