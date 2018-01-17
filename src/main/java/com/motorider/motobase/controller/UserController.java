@@ -26,7 +26,7 @@ public class UserController {
     public MotoBase insertUser(@RequestBody UserDTO user) {
         MotoBase motoBase = MotoBase.builder()
                 .name(user.getName())
-                .idFacebook(user.getIdFacebook())
+                .idSocialNetwork(user.getIdSocialNetwork())
                 .idUser(user.getIdUser())
                 .email(user.getEmail())
                 .motos(new ArrayList<>())
