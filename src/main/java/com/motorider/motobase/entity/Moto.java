@@ -1,5 +1,6 @@
 package com.motorider.motobase.entity;
 
+import com.motorider.motobase.enums.Status;
 import lombok.*;
 
 import java.util.List;
@@ -19,5 +20,11 @@ public class Moto {
 
     private String brand;
 
+    private String model;
+
+    private String year;
+
     private List<Record> records;
+
+    private Status status;
 }

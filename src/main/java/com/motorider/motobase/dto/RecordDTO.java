@@ -1,5 +1,6 @@
 package com.motorider.motobase.dto;
 
+import com.motorider.motobase.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,8 @@ public class RecordDTO {
     private Date notification;
 
     private String category;
+
+    private LocationDTO location;
+
+    private Status status;
 }

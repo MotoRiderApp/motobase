@@ -1,5 +1,6 @@
 package com.motorider.motobase.entity;
 
+import com.motorider.motobase.enums.TypeAccount;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,7 +20,9 @@ public class MotoBase {
 
     private String idUser;
 
-    private String idFacebook;
+    private String idSocialNetwork;
+
+    private TypeAccount typeAccount;
 
     private String name;
 

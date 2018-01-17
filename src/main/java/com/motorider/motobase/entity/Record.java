@@ -1,5 +1,6 @@
 package com.motorider.motobase.entity;
 
+import com.motorider.motobase.enums.Status;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,4 +26,8 @@ public class Record {
     private Date notification;
 
     private String category;
+
+    private Location location;
+
+    private Status status;
 }

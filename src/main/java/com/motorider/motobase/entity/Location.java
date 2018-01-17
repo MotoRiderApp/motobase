@@ -1,4 +1,4 @@
-package com.motorider.motobase.dto;
+package com.motorider.motobase.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,18 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MotoDTO {
+public class Location {
 
     private String name;
 
-    private String brand;
+    private String lat;
 
-    private String model;
-
-    private String year;
-
-    private Double km;
-
-    private Double cc;
-
+    private String log;
 }
