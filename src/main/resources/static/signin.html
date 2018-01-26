@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:fb="www.facebook.com">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contract App - Sign In</title>
+    <meta name="google-signin-client_id"
+          content="391677982885-78iis2nefchdonb2id0j089jjtrjb5oc.apps.googleusercontent.com"/>
+    <script src="https://apis.google.com/js/platform.js" async="async" defer="defer"></script>
+</head>
+<body>
+<h1>Sign In</h1>
+<section>
+    <h2>Google Sign In</h2>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <p>Iniciar sesi&oacute;n con Facebook:</p>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+    <div id="status">
+    </div>
+</section>
+<script type="text/javascript">
+        function onSignIn(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:8080/signin/google');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+              console.log('Signed in as: ' + xhr.responseText);
+              window.location.href="/home";
+            };
+            xhr.send('idToken=' + id_token);
+        }
+
+</script>
+<script>
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+       callSigninFacebook(response);
+    } else {
+       document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId: '154157855197108',
+    cookie     : true,
+    xfbml      : true,
+    version    : 'v2.8'
+  });
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function callSigninFacebook(response) {
+    var idToken = response.authResponse.accessToken;
+    if(idToken != null) {
+      console.log("idToken: " + idToken);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://localhost:8080/signin/facebook');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
+        window.location.href="/home";
+      };
+      xhr.send('idToken=' + idToken);
+
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    }
+  }
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "motobase")
-public class MotoBase {
+public class MotoRider {
 
     @Id
     private String id;
@@ -29,10 +29,4 @@ public class MotoBase {
     private String email;
 
     private List<Moto> motos;
-
-
-
-
-
-
 }

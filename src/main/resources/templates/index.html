@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contract App - Home</title>
+    <meta name="google-signin-client_id" content="391677982885-78iis2nefchdonb2id0j089jjtrjb5oc.apps.googleusercontent.com"/>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async="async" defer="defer"></script>
+</head>
+<body>
+<h1>Home</h1>
+<section>
+    <a href="#" onclick="signIn();">Sign in</a>
+    <!--How to hide the "sign out" when the user is already signed in?-->
+    <a href="#" onclick="signOut();">Sign out</a>
+</section>
+<script type="text/javascript">
+        function signIn() {
+            window.location.href="/signin.html";
+        }
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              console.log('User signed out.');
+            });
+            signIn();
+        }
+        function onLoad() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init();
+            });
+        }
+    </script>
+</body>
+</html>
