@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.motorider.motobase.constant.SecurityConstant.*;
+import static com.motorider.motobase.constant.UserConstant.TYPE_ACCOUNT;
 
 @RestController
 @RequestMapping("/signin/google")
@@ -62,7 +63,8 @@ public class GoogleSignInController {
             claims.put("pictureUrl", pictureUrl);
             claims.put("locale", locale);
             claims.put("familyName", familyName);
-            claims.put("source", TypeAccount.GMAIL);
+            claims.put("email", email);
+            claims.put(TYPE_ACCOUNT, TypeAccount.GMAIL);
             String token = Jwts.builder()
                     .setSubject(email)
                     .setClaims(claims)

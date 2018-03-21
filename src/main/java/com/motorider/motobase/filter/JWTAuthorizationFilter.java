@@ -74,8 +74,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             String email = Jwts.parser()
                     .setSigningKey(SECRET.getBytes())
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-                    .getBody()
-                    .getSubject();
+                    .getBody().get("email", String.class);
 
             String typeAccount = Jwts.parser()
                     .setSigningKey(SECRET.getBytes())

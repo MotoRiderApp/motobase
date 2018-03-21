@@ -1,5 +1,6 @@
 package com.motorider.motobase.repository;
 
+import com.motorider.motobase.dto.ErrorDTO;
 import com.motorider.motobase.entity.MotoRider;
 import com.motorider.motobase.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class MotoRiderRepository {
             List<MotoRider> motoRiderList = mongoTemplate.findAll(MotoRider.class);
             response = ResponseUtil.getSuccessResponse(motoRiderList);
         } catch (Exception e) {
-            response = ResponseUtil.getFailureResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+            response = ResponseUtil.getFailureResponse(new ErrorDTO(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         return response;

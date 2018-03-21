@@ -30,7 +30,7 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
               console.log('Signed in as: ' + xhr.responseText);
-              window.location.href="/home";
+              // window.location.href="/home";
             };
             xhr.send('idToken=' + id_token);
         }
@@ -56,10 +56,10 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId: '154157855197108',
+    appId: '2070906399861365',
     cookie     : true,
     xfbml      : true,
-    version    : 'v2.8'
+    version    : 'v2.12'
   });
 
   FB.getLoginStatus(function(response) {
@@ -85,7 +85,7 @@
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.onload = function() {
         console.log('Signed in as: ' + xhr.responseText);
-        window.location.href="/home";
+        //window.location.href="/home";
       };
       xhr.send('idToken=' + idToken);
 
